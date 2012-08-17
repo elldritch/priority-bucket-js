@@ -23,6 +23,7 @@
 	 * @param priority
 	 *            int The priority; defaults to zero. Higher priorities are
 	 *            traversed first.
+	 * @return array An identifying key for removing items.
 	 */
 	window.PriorityBucket.prototype.push = function(value, priority) {
 		// Priorities default to zero.
@@ -35,7 +36,22 @@
 		}
 		// Push the value.
 		this.bucket[priority].push(value);
+		// Return the key: [priority, index in bucket]
+		return [ priority, this.bucket[priority].length - 1 ];
 	};
+
+	/**
+	 * Removes an item
+	 * 
+	 * @param key
+	 *            array The identifying key of that item.
+	 * @return mixed The item.
+	 */
+	window.PriorityBucket.prototype.rm = function(key) {
+		var out = this.bucket[key[0]][key[1]];
+		this.bucket[key[0]].splice(key[1], 1);
+		return out;
+	}
 
 	/**
 	 * Traverses the priority bucket with a callback.
