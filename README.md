@@ -21,6 +21,6 @@ bucket.push(item5, 50); // Now, traversal order is: [item3, item2, item5, item, 
 Bucket Traversal:
 ```javascript
 bucket.each(function(item){
-	console.log('Look, it's '+item+'!');
+	console.log('Look, it\'s '+item+'!');
 });
 ```
